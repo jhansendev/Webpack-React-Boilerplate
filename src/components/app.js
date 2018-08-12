@@ -4,12 +4,14 @@ import './app.scss';
 
 
 export default class App extends Component {
-    render() {
-        return (
-            <div className="container">
-                <img src={logo}/>
-                <div>Welcome to React Boilerplate</div>
+  render() {
+    return (
+          <div className="container">
+              <img src={logo} />
+              <div>
+Welcome to React Boilerplate
+</div>
             </div>
-        )
-    }
+    );
+  }
 }

@@ -9,6 +9,16 @@ module.exports = merge (base, {
     mode: 'development',
     devtool: 'cheap-module-source-map',
     cache: true,
+    devServer: {
+        historyApiFallback: true,
+        contentBase: 'dist',
+        hot: true,
+        open: true,
+        watchOptions: {
+            ignored: /node_modules/
+        },
+        compress: true
+    },
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: 'static/js/[name].js',
@@ -24,7 +34,7 @@ module.exports = merge (base, {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: { loader: 'babel-loader' }
+                use: ['babel-loader', 'eslint-loader']
             },
             {
                 test: /\.(scss|css)$/,
@@ -63,7 +73,7 @@ module.exports = merge (base, {
     plugins: [
         new BundleAnalyzerPlugin(),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src/index.html'),
+            template: path.join(__dirname, '../src/index.html'),
             filename: 'index.html'
         }),
         new MiniCssExtractPlugin({
