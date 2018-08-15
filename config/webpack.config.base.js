@@ -1,3 +1,5 @@
+// TODO: CSS autoprefixer integration using postcss
+
 const path = require('path');
 
 module.exports = {

@@ -75,6 +75,7 @@ module.exports = merge (base, {
 	},
 	plugins: [
 		new CleanWebpackPlugin(path.join(__dirname, 'dist')),
+		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.HashedModuleIdsPlugin(),
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, '../src/index.html'),
@@ -100,6 +101,11 @@ module.exports = merge (base, {
 		new PurifyCssPlugin({
 			paths: glob.sync(path.join(__dirname, '../src/**/*{.js, .html}')),
 			purifyOptions: { minify: true }
+		}),
+		new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: JSON.stringify('production')
+			}
 		})
 	]
 });
